@@ -1,0 +1,15 @@
+@import "./bootstrap/bootstrap.min.css";
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.b-divider {
+  height: 3rem;
+}
+.btn {
+  margin: 0 5px;
+}
