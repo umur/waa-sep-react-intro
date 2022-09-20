@@ -1,12 +1,16 @@
 import { FC } from "react";
+import AddStudent from "../../components/AddStudent";
+import DeleteStudent from "../../components/DeleteStudent";
+import StudentsList from "../../components/StudentList";
 import TabsPanel from "../../components/Tabs";
+import UpdateStudent from "../../components/UpdateStudent";
 
 const Student: FC = () => {
   const labels: { label: string; component: FC }[] = [
-    { label: "List Courses", component: Student },
-    { label: "Add Course", component: Student },
-    { label: "Update Course", component: Student },
-    { label: "Delete Course", component: Student },
+    { label: "List Students", component: StudentsList },
+    { label: "Add Student", component: AddStudent },
+    { label: "Update Student", component: UpdateStudent },
+    { label: "Delete Student", component: DeleteStudent },
   ];
 
   return (
