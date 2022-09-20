@@ -1,6 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { CourseDetailsType } from "./types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import axios from "axios";
+import useFetch from "../../hooks/useFetch";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -9,11 +11,23 @@ const columns: GridColDef[] = [
 ];
 
 const CourseList: FC = () => {
-  const courses: CourseDetailsType[] = [
-    { name: "FPP", id: "111", code: "CS404" },
-    { name: "MPP", id: "211", code: "CS414" },
-    { name: "WAA", id: "311", code: "CS504" },
-  ];
+  const url = "http://localhost:8080/course";
+
+  const [courses, setCourses] = useState<CourseDetailsType[]>([]);
+  const [response, error] = useFetch(url, {
+    url: "http://localhost:8080/course",
+    method: "get",
+  });
+
+  useEffect(() => {
+    if (error) {
+      console.error(error);
+    } else if (response) {
+      console.log(response);
+      setCourses(response.data);
+    }
+  }, []);
+
   return (
     <>
       <div style={{ height: 400, width: "100%" }}>
