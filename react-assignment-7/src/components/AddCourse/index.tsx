@@ -1,7 +1,28 @@
 import { Box, Button, TextField } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
+import useFetch from "../../hooks/useFetch";
 
 const AddCourse: FC = () => {
+  const url = "http://localhost:8080/course";
+  const [fetch, response, error] = useFetch();
+
+  const [name, setName] = useState<string>();
+  const [code, setCode] = useState<string>();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === "name") {
+      setName(e.target.value);
+    } else if (e.target.name === "code") {
+      setCode(e.target.value);
+    }
+  };
+
+  const onSubmit = (e: React.SyntheticEvent) => {
+    if (name && code) {
+      fetch(url, { url, method: "post", data: { name, code } });
+    }
+  };
+
   return (
     <section>
       <Box
@@ -11,10 +32,26 @@ const AddCourse: FC = () => {
         }}
         noValidate
         autoComplete="off">
-        <TextField id="outlined-basic" label="Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Code" variant="outlined" />
+        <TextField
+          onChange={handleChange}
+          id="outlined-basic"
+          name="name"
+          label="Name"
+          variant="outlined"
+        />
+        <TextField
+          onChange={handleChange}
+          id="outlined-basic"
+          name="code"
+          label="Code"
+          variant="outlined"
+        />
       </Box>
-      <Button size="large" sx={{ marginTop: "10px" }} variant="outlined">
+      <Button
+        onClick={onSubmit}
+        size="large"
+        sx={{ marginTop: "10px" }}
+        variant="outlined">
         Submit
       </Button>
     </section>

@@ -14,10 +14,11 @@ const CourseList: FC = () => {
   const url = "http://localhost:8080/course";
 
   const [courses, setCourses] = useState<CourseDetailsType[]>([]);
-  const [response, error] = useFetch(url, {
-    url: "http://localhost:8080/course",
-    method: "get",
-  });
+  const [fetch, response, error] = useFetch();
+
+  useEffect(() => {
+    fetch(url, { url, method: "get" });
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -25,7 +26,8 @@ const CourseList: FC = () => {
     } else if (response) {
       setCourses(response.data);
     }
-  }, [response]);
+  }, [response?.data]);
+
   return (
     <>
       <div style={{ height: 400, width: "100%" }}>
