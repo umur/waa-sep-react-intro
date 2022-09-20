@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { CourseDetailsType } from "./types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import axios from "axios";
 import useFetch from "../../hooks/useFetch";
 
 const columns: GridColDef[] = [

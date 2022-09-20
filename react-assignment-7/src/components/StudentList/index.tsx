@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { StudentDetailsType } from "./types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import useFetch from "../../hooks/useFetch";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -13,31 +14,37 @@ const columns: GridColDef[] = [
 ];
 
 const StudentsList: FC = () => {
-  const courses: StudentDetailsType[] = [
-    {
-      id: "111",
-      firstName: "John",
-      lastName: "Doe",
-      email: "xyz@gmail.com",
-      gpa: 3.4,
-      major: "Compro",
-      coursesTaken: ["FPP, MPP"],
-    },
-    {
-      id: "112",
-      firstName: "Jane",
-      lastName: "Dpe",
-      email: "xyz1@gmail.com",
-      gpa: 3.46,
-      major: "Compro",
-      coursesTaken: ["FPP, MPP", "WAP"],
-    },
-  ];
+  const url = "http://localhost:8080/student";
+
+  const [students, setStudents] = useState<StudentDetailsType[]>([]);
+  const [fetch, response, error] = useFetch();
+
+  useEffect(() => {
+    fetch(url, { url, method: "get" });
+  }, []);
+
+  useEffect(() => {
+    if (error) {
+      console.error(error);
+    } else if (response) {
+      const normalizedStudents = response.data.map((student: unknown) => {
+        // @ts-ignore
+        const coursesNames = student.coursesTaken.map(
+          // @ts-ignore
+          (course: unknown) => course.name
+        );
+        // @ts-ignore
+        return { ...student, coursesTaken: coursesNames };
+      });
+      setStudents(normalizedStudents);
+    }
+  }, [response?.data]);
+
   return (
     <>
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
-          rows={courses}
+          rows={students}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}

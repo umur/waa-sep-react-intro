@@ -1,7 +1,40 @@
 import { Box, Button, TextField } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
+import useFetch from "../../hooks/useFetch";
 
 const AddStudent: FC = () => {
+  const url = "http://localhost:8080/student";
+  const [fetch, response, error] = useFetch();
+
+  const [firstName, setFirstName] = useState<string>();
+  const [lastName, setLastName] = useState<string>();
+  const [email, setEmail] = useState<string>();
+  const [gpa, setGpa] = useState<string>();
+  const [major, setMajor] = useState<string>();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === "fName") {
+      setFirstName(e.target.value);
+    } else if (e.target.name === "lName") {
+      setLastName(e.target.value);
+    } else if (e.target.name === "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name === "gpa") {
+      setGpa(e.target.value);
+    } else if (e.target.name === "major") {
+      setMajor(e.target.value);
+    }
+  };
+
+  const onSubmit = (e: React.SyntheticEvent) => {
+    if (firstName && lastName && email && gpa && major) {
+      fetch(url, {
+        url,
+        method: "post",
+        data: { firstName, lastName, email, gpa, major, coursesTaken: [] },
+      });
+    }
+  };
   return (
     <section>
       <Box
@@ -11,18 +44,53 @@ const AddStudent: FC = () => {
         }}
         noValidate
         autoComplete="off">
-        <TextField id="outlined-basic" label="First Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Email" variant="outlined" />
-        <TextField id="outlined-basic" label="GPA" variant="outlined" />
-        <TextField id="outlined-basic" label="Major" variant="outlined" />
+        <TextField
+          onChange={handleChange}
+          id="outlined-basic"
+          label="First Name"
+          name="fName"
+          variant="outlined"
+        />
+        <TextField
+          onChange={handleChange}
+          id="outlined-basic"
+          label="Last Name"
+          name="lName"
+          variant="outlined"
+        />
+        <TextField
+          onChange={handleChange}
+          id="outlined-basic"
+          label="Email"
+          name="email"
+          variant="outlined"
+        />
+        <TextField
+          onChange={handleChange}
+          id="outlined-basic"
+          label="GPA"
+          name="gpa"
+          variant="outlined"
+        />
+        <TextField
+          onChange={handleChange}
+          id="outlined-basic"
+          label="Major"
+          name="major"
+          variant="outlined"
+        />
         <TextField
           id="outlined-basic"
           label="Courses Taken"
+          name="courses"
           variant="outlined"
         />
       </Box>
-      <Button size="large" sx={{ marginTop: "10px" }} variant="outlined">
+      <Button
+        onClick={onSubmit}
+        size="large"
+        sx={{ marginTop: "10px" }}
+        variant="outlined">
         Submit
       </Button>
     </section>
