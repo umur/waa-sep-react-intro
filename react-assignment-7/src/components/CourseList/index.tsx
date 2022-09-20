@@ -23,11 +23,9 @@ const CourseList: FC = () => {
     if (error) {
       console.error(error);
     } else if (response) {
-      console.log(response);
       setCourses(response.data);
     }
-  }, []);
-
+  }, [response]);
   return (
     <>
       <div style={{ height: 400, width: "100%" }}>
