@@ -7,7 +7,8 @@ if(props.data.length > 0){
     
   return (
     <div>
-    
+      ##########################################################
+      
         <h2>User review for product {props.data[0].product.name}</h2>
         <table>
             <thead><th>User Name</th><th>Comments</th></thead>
@@ -18,7 +19,8 @@ if(props.data.length > 0){
                  ) })
             }
         </table>
-
+      
+      ##########################################################
     </div>
   )}else{
     return(
