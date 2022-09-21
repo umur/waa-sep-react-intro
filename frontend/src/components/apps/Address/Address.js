@@ -17,18 +17,17 @@ const initialAddress = [{
     "street": "2000 LibertyVille Road",
     "city": "Fairfield",
     "zip": "52556"
-}];
-    
-export const Address = () => {
-  
+  }];
+
+export const Address = () => { 
   const [data, setData] = useState(initialAddress);
-  
+
   return (
-  <div>
+    <div>
       <div className='b-divider'></div>
       <h2>Address</h2>
       <AddressCreate />
       <AddressList data={data} />
     </div>
-  )
+  );
 }

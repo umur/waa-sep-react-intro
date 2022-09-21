@@ -1,28 +1,19 @@
 import React from 'react';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
+import { Table } from '../../../bases/Table/Table';
 
 export const CategoryList = (props) => {
+  const headers = [{ name: "#", className: "float-right" },
+    { name: "Name", className: "center" },
+    { name: "Actions", className: "center"}
+  ];
   return (
-    <div className='bd-example-snippet bd-code-snippet'>
-      <div className='bd-example'>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              props.data.map(item => {
-                return (
-                  <CategoryItem {...item} />
-                )
-              })
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+    <Table headers={headers}>
+      {
+        props.data.map((item,idx) => {
+          return <CategoryItem key={idx} {...item} />
+        })
+      }
+    </Table>
+  )
 };

@@ -1,15 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { Button } from '../../../bases/Button/Button';
+import { Spinner } from '../../../bases/Spinner/Spinner';
 
 export const AddressItem = (props) => {
   return (
     <tr>
-      <td>{props.id}</td>
-      <td>{props.street}</td>
-      <td>{props.city}</td>
-      <td>{props.zip}</td>
-      <td>
-        <button type='button' className='btn btn-outline-info'>Edit</button>
-        <button type='button' className='btn btn-outline-danger'>Delete</button>
+      <td className='float-right'>{props.id}</td>
+      <td className='center'>{props.street}</td>
+      <td className='center'>{props.city}</td>
+      <td className='center'>{props.zip}</td>
+      <td className='center'>
+        <Button type='button' className='btn-outline-info'>Edit</Button>
+        <Button type='button' className='btn-outline-danger'>Delete</Button>
+        {/* <Spinner className="text-danger" /> */}
+        {/* <Button type='submit' className='btn-warning' disabled='disabled'>Disable button</Button> */}
       </td>
     </tr>
   );

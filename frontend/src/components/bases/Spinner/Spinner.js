@@ -1,8 +1,9 @@
 import React from 'react';
-import './Spinner.css';
 
-const Spinner = (props) => {
-  <div className={["loader", props.className].join(" ")}>Loading...</div>
+export const Spinner = (props) => {
+  return (
+    <div className={`spinner-border ${props.className ? props.className : 'text-info'}`}>
+      <span className='visually-hidden'>Loading...</span>
+    </div>
+  )
 }
-
-export default Spinner;

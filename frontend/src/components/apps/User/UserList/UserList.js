@@ -1,31 +1,23 @@
 import React from 'react';
 import { UserItem } from '../UserItem/UserItem';
+import { Table } from '../../../bases/Table/Table';
 
 export const UserList = (props) => {
+  const headers = [
+    { name: "#", className: "float-right" },
+    { name: "Full Name", className: "center" },
+    { name: "Email", className: "center" },
+    { name: "Gender", className: "center" },
+    { name: "Actions", className: "center" }
+  ];
+
   return (
-    <div className='bd-example-snippet bd-code-snippet'>
-      <div className='bd-example'>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Gender</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              props.data.map(item => {
-                return (
-                  <UserItem {...item} />
-                )
-              })
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <Table headers={headers}>
+      {
+        props.data.map((item,idx) => (
+          <UserItem key={idx} {...item} />
+        ))
+      }
+    </Table>
   );
 }

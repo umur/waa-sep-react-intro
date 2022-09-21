@@ -1,31 +1,23 @@
 import React from 'react';
 import { ProductItem } from '../ProductItem/ProductItem';
+import { Table } from '../../../bases/Table/Table';
 
 export const ProductList = (props) => {
+  const headers = [
+    { name: "#", className: "float-right" },
+    { name: "Name", className: "center" },
+    { name: "Price", className: "center" },
+    { name: "Rating", className: "center" },
+    {name: "Actions", className: "center"},
+  ];
+
   return (
-    <div className='bd-example-snippet bd-code-snippet'>
-      <div className='bd-example'>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Rating</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              props.data.map(item => {
-                return (
-                  <ProductItem {...item} />
-                )
-              })
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <Table headers={headers} >
+      {
+        props.data.map((item,idx) => (
+          <ProductItem key={idx} {...item} />
+        ))
+      }
+    </Table>
   );
 }

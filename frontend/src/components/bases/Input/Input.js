@@ -1,58 +1,58 @@
-import React from 'react';
-import './Input.css';
+import React, { useState } from 'react';
 
-const Input = (props) => {
-  let inputElement = null;
-  const inputClassess = ["input-element"];
-
-  let validationError = null;
-  if (props.invalid && props.shouldValidate && props.touched) {
-    inputClassess.push("invalid");
-    validationError = <p className="error">{props.errorMsg}</p>
-  }
-
-  switch (props.elementType) {
-    case 'input':
-      inputElement = <input
-        className={inputClassess.join(" ")}
-        {...props.config}
-        value={props.value}
-        onChange={props.changed} />;
-      break;
-    case 'textarea':
-      inputElement = <textarea
-        className={inputClassess.join(" ")}
-        {...props.config}
-        value={props.value}
-        onChange={props.changed} />;
-      break;
-    case 'select':
-      inputElement = (
-        <select className={inputClassess.join(" ")}
-          value={props.value}
-          onChange={props.changed}>
-          {props.config.options.map(option => (
-            <option selected={option.selected ? true : false} key={option.value} value={option.value}>{option.displayValue}</option>
-          ))}
-        </select>
-      );
-      break;
-    default:
-      inputElement = <input
-        className={inputClassess.join(" ")}
-        {...props.config}
-        value={props.value}
-        onChange={props.changed} />;
-      break;
-  }
+export const Input = (props) => {
+  const [hidden, setHidden] = useState(true);
+  const { floating, type, className, label, value, invalid } = props;
 
   return (
-    <div className="input">
-      <label className='label'>{props.label}</label>
-      {inputElement}
-      {validationError}
+    <div className={`mb-3 ${floating ? 'form-floating' : ''} ${className ? className : ''} ${type==='password' ? 'input-group' : ''}`}>
+      {
+        floating && 
+        <input
+          type={type === 'password' ? (hidden ? 'password' : 'text') : type}
+          className={`form-control ${invalid ? 'is-invalid' : ''}`}
+          id={props.id}
+          placeholder={props.placeholder}
+          disabled={props.disabled ? true : false}
+          readOnly={props.readOnly ? true : false}
+          value={value}
+          name={props.name}
+          onChange={props.changed}
+        />
+      }
+      {
+        floating && type === 'password' &&
+        <span className="input-group-text" onClick={() => setHidden(hidden => !hidden)}>{hidden ? 'Show' : 'Hide'}</span>
+      }
+      <label
+        htmlFor={props.id}
+        className={floating ? '' : 'form-label'}
+      >{label}</label>
+      {
+        !floating &&
+        <input
+          type={type === 'password' ? (hidden ? 'password' : 'text') : type}
+          className={`form-control ${invalid ? 'is-invalid' : ''}`}
+          id={props.id}
+          placeholder={props.placeholder}
+          disabled={props.disabled ? true : false}
+          readOnly={props.readOnly ? true : false}
+          value={value}
+          name={props.name}
+          onChange={props.changed}
+        />
+      }
+      {
+        !floating && type === 'password' &&
+        <span className="input-group-text" onClick={() => setHidden(hidden => !hidden)}>{hidden ? 'Show' : 'Hide'}</span>
+      }
+      {
+        invalid &&
+        <div
+          className="invalid-feedback">
+          {props.errorMsg}
+        </div>
+      }
     </div>
   );
-}
-
-export default Input;
+};
