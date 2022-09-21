@@ -6,14 +6,7 @@ function CreateProduct() {
         price : 0.0,
         rating : 0
     })
-    const initalState  = {
-        name : "alexa",
-        price : 44,
-        rating : 10
-    }
     useEffect(()=>{
-        // axios.post("http://localhost:8082/products")
-        //     .then()
         console.log("effect running")
     },[])
     const saveProduct = () => {

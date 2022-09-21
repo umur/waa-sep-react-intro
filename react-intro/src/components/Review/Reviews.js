@@ -5,8 +5,11 @@ import Review from './Review'
 function Reviews() {
 const[reviews,setReviews] = useState([]);
 const[productId,setProductId] = useState('');
+const [toggle,setToggle] = useState(true)
+
 
 const fetchReview = () => {
+        setToggle(true)
         Axios.get(`http://localhost:8082/products/reviews/${productId}`)
        .then((response)=>{setReviews(response.data)
         console.log(response)    
@@ -18,7 +21,10 @@ const fetchReview = () => {
         <p>Enter product Id to view Review for this particular product</p>
       <input type='text' name='productId' onChange={(e)=>{setProductId(e.target.value)}}/>
       <button  onClick={fetchReview}>Fetch Review</button>
-      <Review data={reviews}/>
+      <Review data={reviews}
+              toggle = {toggle}
+              setToggle = {setToggle}
+      />
    </div>
   )
 }

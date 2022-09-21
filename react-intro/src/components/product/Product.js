@@ -22,12 +22,11 @@ function Product(props) {
           <button onClick={()=>openReview(props.id)}> See Reviews</button>******************************
           {(reviews.length > 0 && props.id == selectedId )? 
           <div>
-            
               <Review data={reviews} />
                 
           </div>
            :<div>
-            
+
            </div> }
     </div>
   )
