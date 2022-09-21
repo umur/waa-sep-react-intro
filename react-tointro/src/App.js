@@ -1,12 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Categorys from "./category/Categorys";
-import CreateCategory from "./category/CreatCategory";
+import Product from "./Products/Product";
 import Products from "./Products/Products";
-import CreatProduct from "./Products/CreatProduct";
-import GetCategoryByID from "./category/GetCategoryById";
+import ProductDetail from "./Products/ProductDetail";
+
 function App() {
   const categoryList = [
     { id: 1, name: "food" },
@@ -16,6 +17,58 @@ function App() {
     { id: 1, name: "iphon", price: 120, rating: "2.5" },
     { id: 2, name: "apple", price: 220, rating: "2.5" },
   ];
+
+  // lets creat state for categorys in order to be able to get it form back end
+
+  // practice using axios and useEffect
+  const [categoryState, setCategoryState] = useState([
+    { id: 1, name: "food" },
+    { id: 2, name: "book" },
+  ]);
+
+  const getCategorys = async () => {
+    const result = await axios.get("http://localhost:8080/products");
+    setCategoryState(result.data);
+    // console.log(result);
+  };
+
+  const [productState, setProductStater] = useState([
+    { id: 1, name: "iphon", price: 120, rating: "2.5" },
+    { id: 2, name: "apple", price: 220, rating: "5.5" },
+  ]);
+
+  const getProducts = async () => {
+    const result = await axios.get("http://localhost:8080/products");
+
+    setProductStater(result.data);
+  };
+  useEffect(() => {
+    getCategorys();
+    getProducts();
+  }, []);
+  // creat a state to get selected Product Id
+  const [selectedProductId, setSelectedProductId] = useState(1);
+  return (
+    <div className="App">
+      <div>
+        <Categorys Categorys={categoryState} />
+        <p>list of Products</p>
+        <Products
+          Products={productState}
+          setSelectedProductId={setSelectedProductId}
+        />
+        <ProductDetail selectedProductId={selectedProductId} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+/* 
+
+
+
   const [categoryState, setCategoryState] = useState({ id: 1, name: "food" });
   const onGetCategoryClicked = () => {
     console.log("hi");
@@ -23,8 +76,9 @@ function App() {
     console.log(categoryState);
   };
   let [getCategoryState, setGetCategoryState] = useState(categoryList);
-  return (
-    <div className="App">
+
+
+  <div className="App">
       <div>
         <p>Welcom to my first React project.</p>
         <input
@@ -44,8 +98,4 @@ function App() {
         <Products Products={productLis} />
         <GetCategoryByID Categorys={categoryList} />
       </div>
-    </div>
-  );
-}
-
-export default App;
+    </div>*/
