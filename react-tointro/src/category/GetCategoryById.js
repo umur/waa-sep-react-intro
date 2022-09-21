@@ -7,8 +7,8 @@ export default function GetCategoryByID(props) {
     console.log("so");
     const id = setProductIdState(e.target.value);
     console.log(productIdState);
-    props.Categorys.filter((item) => item.id == id);
-    console.log(props);
+    // props.Categorys.filter((item) => item.id == id);
+    // console.log(props);
   };
   return (
     <div>

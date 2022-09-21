@@ -22,6 +22,7 @@ function App() {
     setCategoryState({ categoryList });
     console.log(categoryState);
   };
+  let [getCategoryState, setGetCategoryState] = useState(categoryList);
   return (
     <div className="App">
       <div>
@@ -32,13 +33,16 @@ function App() {
           onClick={onGetCategoryClicked}
         />
         <Categorys Categorys={categoryList} />
-        <CreateCategory />
+        <CreateCategory
+          getCategoryState={getCategoryState}
+          setGetCategoryState={setGetCategoryState}
+        />
         <GetCategoryByID />
       </div>
       <div>
         <p>Products</p>
         <Products Products={productLis} />
-        <GetCategoryByID Categorys={categoryList}/>
+        <GetCategoryByID Categorys={categoryList} />
       </div>
     </div>
   );

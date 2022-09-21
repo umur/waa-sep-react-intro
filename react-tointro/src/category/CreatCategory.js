@@ -11,6 +11,10 @@ export default function CreateCategory(props) {
 
   const onSaveCategoryClicked = () => {
     console.log(categoryState);
+    const list = props.getCategoryState;
+    list.push(categoryState);
+    props.setGetCategoryState(list);
+    console.log(list);
   };
   return (
     <div>
