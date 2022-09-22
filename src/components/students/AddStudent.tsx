@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-import {ICourse, IStudent} from "../Home";
+import {IStudent} from "../../models/IStudent";
+import axios from "axios";
+import {BASE_URL} from "../../utils/GlobalConstants";
+import {useNavigate} from "react-router";
 
 interface IProps {
-    addStudent: (student: IStudent) => void
+    // addStudent: (student: IStudent) => void
 }
 
 const AddStudent: React.FC<IProps> = (props) => {
@@ -13,10 +16,12 @@ const AddStudent: React.FC<IProps> = (props) => {
     const [email, setEmail] = useState('');
     const [major, setMajor] = useState('');
     const [gpa, setGPA] = useState(0);
+    const navigation = useNavigate();
 
-    const setStudent = () => {
+    const save = async () => {
         const student: IStudent = {id, firstName, lastName, email, major, gpa};
-        props.addStudent(student);
+        await axios.post(`${BASE_URL}/students`, student);
+        navigation('/students');
     }
 
     return (
@@ -51,7 +56,7 @@ const AddStudent: React.FC<IProps> = (props) => {
                     </div>
                 </div>
                 <div>
-                    <button id="save" onClick={() => setStudent()} className="btn btn-primary">Save</button>
+                    <button id="save" onClick={() => save()} className="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>

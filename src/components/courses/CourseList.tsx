@@ -1,14 +1,28 @@
-import React from 'react';
-import {ICourse} from "../Home";
+import React, {useEffect, useState} from 'react';
+import {ICourse} from "../../models/ICourse";
+import {Link} from "react-router-dom";
+import axios from "axios";
+import {BASE_URL} from "../../utils/GlobalConstants";
 
 interface IProps {
-    courses: ICourse[]
+
 }
 
 const CourseList: React.FC<IProps> = (props)  => {
+    const [courses, setCourses] = useState<ICourse[]>([]);
+    const getCourses = async () => {
+        const res = await axios.get(`${BASE_URL}/courses`);
+        setCourses(res.data);
+    }
+    useEffect(() => {
+        getCourses();
+    }, []);
     return (
         <div style={{margin: "0 auto", marginTop: "50px"}}>
             <h1>Courses List</h1>
+            <div>
+                <Link to={'/courses/add'}><button className={'btn btn-primary'}>Add Course</button></Link>
+            </div>
             <table className="table">
                 <thead>
                 <tr>
@@ -19,7 +33,7 @@ const CourseList: React.FC<IProps> = (props)  => {
                 </tr>
                 </thead>
                 <tbody id="tbody">
-                    {props.courses && props.courses.map(course => (
+                    {courses && courses.map(course => (
                         <tr>
                             <td>{course.id}</td>
                             <td>{course.name}</td>

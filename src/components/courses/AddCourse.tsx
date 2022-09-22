@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-import {ICourse} from "../Home";
+import {ICourse} from "../../models/ICourse";
+import {useNavigate} from "react-router";
+import axios from "axios";
+import {BASE_URL} from "../../utils/GlobalConstants";
 
 interface IProps {
-    addCourse: (course: ICourse) => void
+
 }
 
 const AddCourse: React.FC<IProps> = (props) => {
@@ -10,10 +13,12 @@ const AddCourse: React.FC<IProps> = (props) => {
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [code, setCode] = useState(0);
+    const navigation = useNavigate();
 
-    const setCourse = () => {
-        const course: ICourse = {id, name, code};
-        props.addCourse(course);
+
+    const save = async () => {
+        await axios.post(`${BASE_URL}/courses`, {id, name, code});
+        navigation('/');
     }
 
     return (
@@ -36,7 +41,7 @@ const AddCourse: React.FC<IProps> = (props) => {
                     </div>
                 </div>
                 <div>
-                    <button id="save" onClick={() => setCourse()} className="btn btn-primary">Save</button>
+                    <button id="save" onClick={() => save()} className="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
