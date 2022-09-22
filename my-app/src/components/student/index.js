@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function index(){
 return(
@@ -7,12 +8,15 @@ return(
   <div className="container">
     {/* Content here  */}
     <div style={{display:"flex",justifyContent:"space-between"}}>
-      <a href="index.html" type="button" className="btn btn-primary">Home</a>
-      <a href="course.html" type="button" className="btn btn-secondary">Course</a>
+      {/* <a href="index.html" type="button" className="btn btn-primary">Home</a> */}
+      <Link to='/dashboard' type="button" className="btn btn-success">Dashboard</Link>
+      <Link to='/course' type="button" className="btn btn-secondary">Course</Link>
+      {/* <a href="course.html" type="button" className="btn btn-secondary">Course</a> */}
     </div>
     <p></p>
     <div>
-      <a href="addStudent.html" type="button" className="btn btn-success">Add Student</a>
+      
+      <Link to='/create-student' type="button" className="btn btn-info">Add Student</Link>
       <p></p>
       <table className="table">
         <thead>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CreateCourse() {
 
@@ -12,9 +13,12 @@ export default function CreateCourse() {
       <div className="container">
         {/* Content here  */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <a href="index.html" type="button" className="btn btn-success">Home</a>
-          <a href="course.html" type="button" className="btn btn-primary">Course</a>
-          <a href="student.html" type="button" className="btn btn-secondary">Student</a>
+          {/* <a href="index.html" type="button" className="btn btn-success">Home</a> */}
+          <Link to='/dashboard' type="button" className="btn btn-success">Dashboard</Link>
+          {/* <a href="course.html" type="button" className="btn btn-primary">Course</a> */}
+          <Link to='/course' type="button" className="btn btn-primary">Course</Link>
+          {/* <a href="student.html" type="button" className="btn btn-secondary">Student</a> */}
+          <Link to='/srudent' type="button" className="btn btn-secondary">Student</Link>
         </div>
         <p>Add Course</p>
         <hr />
