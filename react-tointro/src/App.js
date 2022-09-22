@@ -7,8 +7,17 @@ import Categorys from "./category/Categorys";
 import Product from "./Products/Product";
 import Products from "./Products/Products";
 import ProductDetail from "./Products/ProductDetail";
+import { instance } from "./index";
 
 function App() {
+  // creat base URL
+  axios.defaults.baseURL = "http://localhost:8080";
+  // fix this part if it need spring project with security
+  const getPersonsWithBaseUrl = async () => {
+    const result = await instance.get("/products");
+    console.log(result.data);
+  };
+
   const categoryList = [
     { id: 1, name: "food" },
     { id: 2, name: "book" },
@@ -27,37 +36,62 @@ function App() {
   ]);
 
   const getCategorys = async () => {
-    const result = await axios.get("http://localhost:8080/products");
+    const result = await axios.get("/products");
     setCategoryState(result.data);
     // console.log(result);
   };
 
-  const [productState, setProductStater] = useState([
+  const [productState, setProductState] = useState([
     { id: 1, name: "iphon", price: 120, rating: "2.5" },
     { id: 2, name: "apple", price: 220, rating: "5.5" },
   ]);
 
   const getProducts = async () => {
-    const result = await axios.get("http://localhost:8080/products");
+    const result = await axios.get("/products");
 
-    setProductStater(result.data);
+    setProductState(result.data);
   };
   useEffect(() => {
     getCategorys();
     getProducts();
+    getPersonsWithBaseUrl();
   }, []);
   // creat a state to get selected Product Id
   const [selectedProductId, setSelectedProductId] = useState(1);
+
+  // we need to know the current state of toggle so lets use state
+  // we want to display and hide the list of products
+  const [toggleState, setToggleState] = useState(true);
+
+  const onToggleClicked = () => {
+    setToggleState(!toggleState);
+  };
+  let ProductComponetn = (
+    <Products
+      Products={productState}
+      setSelectedProductId={setSelectedProductId}
+    />
+  );
+  // wow show hid work correctly
+  if (!toggleState) {
+    ProductComponetn = null;
+  }
+
   return (
     <div className="App">
       <div>
         <Categorys Categorys={categoryState} />
+        <input type="button" value="Show / Hide" onClick={onToggleClicked} />
         <p>list of Products</p>
-        <Products
+        {/* <Products
           Products={productState}
           setSelectedProductId={setSelectedProductId}
-        />
+        /> */}
+        {/* {ProductComponetn} */}
+        {/* instade of writing if statement of toggleState we can ... */}
+        {(toggleState) ? ProductComponetn:null}
         <ProductDetail selectedProductId={selectedProductId} />
+        // practice on Toggled
       </div>
     </div>
   );
