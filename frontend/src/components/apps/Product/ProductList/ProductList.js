@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProductItem } from '../ProductItem/ProductItem';
-import { Table } from '../../../bases/Table/Table';
+import { Table } from 'components/bases/Table/Table';
 
 export const ProductList = (props) => {
   const headers = [

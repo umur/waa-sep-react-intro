@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../../bases/Button/Button';
+import { Button } from 'components/bases/Button/Button';
 
 export const CategoryItem = (props) => {
   return (

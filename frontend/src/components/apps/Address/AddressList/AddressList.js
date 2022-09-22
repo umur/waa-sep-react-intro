@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from '../../../bases/Table/Table';
+import { Table } from 'components/bases/Table/Table';
 import { AddressItem } from '../AddressItem/AddressItem';
 
 export const AddressList = (props) => {

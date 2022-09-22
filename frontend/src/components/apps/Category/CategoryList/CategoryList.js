@@ -1,6 +1,6 @@
 import React from 'react';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
-import { Table } from '../../../bases/Table/Table';
+import { Table } from 'components/bases/Table/Table';
 
 export const CategoryList = (props) => {
   const headers = [{ name: "#", className: "float-right" },

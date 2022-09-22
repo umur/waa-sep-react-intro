@@ -1,0 +1,3 @@
+export class AppConstant {
+  static accessToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0aGkudHJ1b25nQG1pdS5lZHUiLCJpYXQiOjE2NjM3NzA3NDEsImV4cCI6MTY2Mzc3MDgyN30._fUfpTuxmHpl7ALmA6ye9e3d5-1lRn7W0c2Ue5h1Uz5stlFWX3UXgZBtaUKS2qmOOf69-I18J7gGgOCiXkdQuA';
+}

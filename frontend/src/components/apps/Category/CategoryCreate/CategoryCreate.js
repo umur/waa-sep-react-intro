@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button } from '../../../bases/Button/Button';
-import { Input } from '../../../bases/Input/Input';
+import { Button } from 'components/bases/Button/Button';
+import { Input } from 'components/bases/Input/Input';
+import { Card } from 'components/bases/Card/Card';
 
 export const CategoryCreate = (props) => {
   const [category, setCategory] = useState({ name: '' });
@@ -18,21 +19,22 @@ export const CategoryCreate = (props) => {
 
   return (
     <div className='form col-4'>
-      <h3>Category Create Form</h3>
-      <Input
-        type="text"
-        name="name"
-        id="name"
-        floating={true}
-        value={category.name}
-        label='Name'
-        changed={onChange}
-      />
-      <Button
-        className='btn-outline-primary'
-        type='button'
-        clicked={saveHandler}
-      >Save</Button>
+      <Card title='Category Create Form'>
+        <Input
+          type="text"
+          name="name"
+          id="name"
+          floating={true}
+          value={category.name}
+          label='Name'
+          changed={onChange}
+        />
+        <Button
+          className='btn-outline-primary'
+          type='button'
+          clicked={saveHandler}
+          >Save</Button>
+      </Card>
     </div>
   );
 }

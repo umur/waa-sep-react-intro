@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserItem } from '../UserItem/UserItem';
-import { Table } from '../../../bases/Table/Table';
+import { Table } from 'components/bases/Table/Table';
 
 export const UserList = (props) => {
   const headers = [

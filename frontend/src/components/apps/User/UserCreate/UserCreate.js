@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Button } from '../../../bases/Button/Button';
-import { Card } from '../../../bases/Card/Card';
-import { Input } from '../../../bases/Input/Input';
-import { Radio } from '../../../bases/Radio/Radio';
-import { Select } from '../../../bases/Select/Select';
+import { Button } from 'components/bases/Button/Button';
+import { Card } from 'components/bases/Card/Card';
+import { Input } from 'components/bases/Input/Input';
+import { Select } from 'components/bases/Select/Select';
+import axios from 'axios-instance';
 
 export const UserCreate = (props) => {
   const [user, setUser] = useState({ first_name: '', last_name: '', email: '', password: '', gender: 'female' });
   const [selectedValue, setSelectedValue] = useState('female');
-  
+
   const onChange = (evt) => {
     setUser({
       ...user,

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../../../bases/Button/Button';
-import { Spinner } from '../../../bases/Spinner/Spinner';
+import { Button } from 'components/bases/Button/Button';
+import { Spinner } from 'components/bases/Spinner/Spinner';
 
 export const AddressItem = (props) => {
   return (
