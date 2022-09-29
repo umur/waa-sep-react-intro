@@ -5,7 +5,8 @@ export default function Dashboard() {
     <div>
       <Link to="/products">All Products</Link> |{" "}
       <Link to="/create-product">Create Product</Link> |{" "}
-      <Link to="/counter">Counter</Link>
+      <Link to="/counter">Counter</Link> | <Link to="/posts">Posts</Link> |{" "}
+      <Link to="/create-post">Create Post</Link>
     </div>
   );
 }
