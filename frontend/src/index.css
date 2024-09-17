@@ -1,0 +1,28 @@
+@import "./bootstrap/bootstrap.min.css";
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.b-divider {
+  height: 3rem;
+}
+.application .btn {
+  cursor: pointer;
+  margin: 0 0.5rem 0 0;
+}
+.float-right {
+  text-align: right;
+}
+.float-left{
+  text-align: left;
+}
+.center {
+  text-align: center;
+}
+.form {
+  margin: 1rem 0;
+}

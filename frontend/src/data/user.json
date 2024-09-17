@@ -1,0 +1,25 @@
+[{
+  "id": 1,
+  "email": "adam.smith@miu.edu",
+  "password": "Adam",
+  "first_name": "Smith",
+  "last_name": "1234",
+  "gender": "male",
+  "id_address": 1
+},{
+  "id": 2,
+  "email": "thi.truong@miu.edu",
+  "password": "Thi",
+  "first_name": "Truong",
+  "last_name": "1234",
+  "gender": "female",
+  "id_address": 12
+},{
+  "id": 3,
+  "email": "peter.pan@miu.edu",
+  "password": "Peter",
+  "first_name": "Pan",
+  "last_name": "1234",
+  "gender": "male",
+  "id_address": 3
+}]
